@@ -1,0 +1,13 @@
+{
+  "name": "mes-quotation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistem quotation Mirai Energy Supply",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i resources/css/input.css -o public/assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i resources/css/input.css -o public/assets/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

@@ -1,0 +1,23 @@
+# Rahasia
+.env
+.env.*
+!.env.example
+
+# Dependensi dan build
+/vendor/
+/node_modules/
+
+# Hasil aplikasi
+/storage/outputs/generated_pdfs/*
+!/storage/outputs/generated_pdfs/.gitkeep
+/public/assets/img/signature/*
+!/public/assets/img/signature/.gitkeep
+!/public/assets/img/signature/.htaccess
+/public/assets/img/uploads/
+
+# Lain-lain
+*.log
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db

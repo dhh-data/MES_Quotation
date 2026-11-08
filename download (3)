@@ -1,0 +1,8 @@
+# Folder unggahan: hanya gambar yang boleh dilayani, tidak pernah dieksekusi.
+Options -Indexes -ExecCGI
+<FilesMatch "\.(php|phtml|phar|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>

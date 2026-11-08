@@ -1,0 +1,14 @@
+# Front controller: semua URL yang bukan file/folder asli diarahkan ke index.php
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Sembunyikan file tersembunyi (.env, .git, dll)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

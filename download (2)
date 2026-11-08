@@ -1,0 +1,19 @@
+# Pengaman bila folder proyek (bukan hanya public/) terlanjur terbuka di web server.
+# Cara yang benar tetap mengarahkan document root ke folder public/.
+Options -Indexes
+
+<FilesMatch "^(\.|composer\.|package|tailwind\.config)|\.(env|sql|md|lock|sh|log|example)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Blok akses langsung ke kode, skema, dan penyimpanan.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(src|database|storage|bin|vendor|resources|node_modules)(/|$) - [F,L]
+</IfModule>

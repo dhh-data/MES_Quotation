@@ -1,0 +1,335 @@
+/* =========================================================================
+   Lembar quotation A4
+   Ditulis dengan CSS sederhana (tabel, warna polos, tanpa flex/grid/variabel)
+   supaya tampil sama di layar, cetak browser, dan DomPDF.
+   Palet MES: forest #05472f, green #177a41, lime #b4d000, yellow #f7e100.
+   ========================================================================= */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* --- Panggung di layar: lembar diskalakan oleh pdf.js agar muat di layar kecil --- */
+.sheet-stage {
+  overflow: hidden;
+  padding: 2px;
+}
+.sheet-scale {
+  width: 210mm;
+  margin: 0 auto;
+  transform-origin: top left;
+}
+.sheet-shadow {
+  box-shadow: 0 1px 3px rgba(5, 71, 47, 0.18), 0 14px 34px rgba(5, 71, 47, 0.2);
+}
+
+/* --- Lembar --- */
+.sheet {
+  position: relative;
+  width: 210mm;
+  min-height: 296mm;
+  background: #ffffff;
+  color: #17211b;
+  font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif;
+  font-size: 8.4pt;
+  line-height: 1.45;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sheet.is-pdf {
+  width: auto;
+  min-height: 0;
+}
+.sheet table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.sheet td,
+.sheet th {
+  padding: 0;
+  vertical-align: top;
+  text-align: left;
+}
+.sheet img {
+  border: 0;
+}
+.s-body {
+  padding: 12mm 13mm 34mm 13mm;
+}
+
+/* --- Kop surat --- */
+.s-head {
+  margin-bottom: 4mm;
+}
+.sheet .s-head td {
+  vertical-align: middle;
+}
+.sheet .s-logo {
+  width: 23mm;
+}
+.s-logo img {
+  display: block;
+  height: 17mm;
+  width: auto;
+}
+.s-name {
+  font-size: 15pt;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #05472f;
+  line-height: 1.15;
+}
+.s-addr {
+  margin-top: 1.5mm;
+  color: #5a6a60;
+  font-size: 8pt;
+}
+.sheet .s-contact {
+  width: 52mm;
+  text-align: right;
+  color: #5a6a60;
+  font-size: 8pt;
+  line-height: 1.6;
+}
+.s-rule td {
+  height: 1.2mm;
+  font-size: 1px;
+  line-height: 1px;
+}
+
+/* --- Blok perusahaan dan data dokumen --- */
+.s-two {
+  margin-top: 5mm;
+  table-layout: fixed;
+}
+.sheet .s-two td.l {
+  width: 50%;
+  padding-right: 4mm;
+}
+.sheet .s-two td.r {
+  width: 50%;
+  padding-left: 4mm;
+}
+.s-label,
+.s-title {
+  border-top: 1px solid #17211b;
+  padding-top: 1mm;
+  margin-bottom: 1mm;
+}
+.s-label {
+  font-size: 12pt;
+  font-weight: 500;
+}
+.s-title {
+  font-size: 15pt;
+  font-weight: 600;
+  color: #05472f;
+}
+.s-sub {
+  border-top: 1px solid #17211b;
+  margin-top: 3mm;
+  padding-top: 1mm;
+  margin-bottom: 1mm;
+  font-size: 8.6pt;
+}
+.s-band {
+  background: #05472f;
+  color: #ffffff;
+  padding: 2mm 2.6mm;
+  border-bottom: 1mm solid #b4d000;
+}
+.s-band b {
+  display: block;
+  font-weight: 700;
+}
+.sheet .s-meta td {
+  color: #ffffff;
+  padding: 0.3mm 0;
+}
+.sheet .s-meta td.k {
+  width: 31mm;
+}
+
+/* --- Tabel item --- */
+.s-items {
+  margin-top: 6mm;
+}
+.sheet .s-items th {
+  background: #177a41;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 2mm 1.8mm;
+  font-size: 8pt;
+}
+.sheet .s-items td {
+  padding: 2.2mm 1.8mm;
+  border-bottom: 1px solid #cfd9cd;
+}
+.sheet .s-items tr.last td {
+  border-bottom: 1px solid #17211b;
+}
+.sheet .num {
+  text-align: right;
+  white-space: nowrap;
+}
+.sheet .ctr {
+  text-align: center;
+}
+
+/* --- Ringkasan --- */
+.s-sum {
+  margin-top: 4mm;
+}
+.sheet .s-sum td.l {
+  width: 55%;
+  padding-right: 6mm;
+}
+.s-say b {
+  color: #5a6a60;
+  font-weight: 500;
+}
+.s-pricenote {
+  margin-top: 1.5mm;
+  color: #5a6a60;
+  font-style: italic;
+  font-size: 7.8pt;
+}
+.sheet .s-totals td {
+  padding: 1.2mm 2.2mm;
+}
+.sheet .s-totals tr.grand td {
+  background: #05472f;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 2mm 2.2mm;
+  border-bottom: 1mm solid #f7e100;
+}
+.sheet .s-totals tr.grand td.num {
+  font-size: 10pt;
+}
+
+/* --- Catatan --- */
+.s-notes {
+  margin-top: 5mm;
+  border: 1px solid #05472f;
+  padding: 2.4mm 3mm;
+}
+.s-notes b {
+  display: block;
+  color: #05472f;
+  font-weight: 700;
+  margin-bottom: 0.6mm;
+}
+
+/* --- Tanda tangan --- */
+.s-sign {
+  margin-top: 8mm;
+  table-layout: fixed;
+}
+.sheet .s-sign td {
+  width: 50%;
+  text-align: center;
+  padding: 0 7mm;
+}
+.s-sign .space {
+  height: 22mm;
+  text-align: center;
+}
+.s-sign .space img {
+  max-height: 20mm;
+  max-width: 58mm;
+  margin-top: 1mm;
+}
+.s-sign .line {
+  border-top: 1px solid #17211b;
+  padding-top: 1mm;
+  font-weight: 600;
+}
+.s-sign .role {
+  color: #5a6a60;
+  font-size: 7.8pt;
+}
+
+/* --- Footer lembar --- */
+.s-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+/* DomPDF: footer diletakkan dengan koordinat mutlak di dasar halaman A4 (297 mm), tinggi footer sekitar 15 mm. */
+.sheet.is-pdf {
+  position: static;
+}
+.sheet.is-pdf .s-foot {
+  position: absolute;
+  left: 0;
+  top: 281mm;
+  width: 210mm;
+}
+.s-foot table {
+  background: #05472f;
+  border-top: 1mm solid #b4d000;
+}
+.sheet .s-foot td {
+  color: #ffffff;
+  padding: 3.2mm 4mm;
+  font-size: 7.6pt;
+  vertical-align: middle;
+}
+.sheet .s-foot td.nm {
+  width: 54mm;
+  padding-left: 13mm;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 8.4pt;
+}
+.sheet .s-foot td.tab {
+  width: 54mm;
+  background: #f7e100;
+  color: #05472f;
+  font-weight: 700;
+  padding-right: 13mm;
+}
+.s-foot .lbl {
+  display: block;
+  color: #f7e100;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  font-size: 6.6pt;
+}
+
+/* --- Cetak --- */
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .sheet-stage {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+  .sheet-scale {
+    transform: none !important;
+    width: 210mm !important;
+    margin: 0 !important;
+  }
+  .sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+  .sheet tr {
+    page-break-inside: avoid;
+  }
+}
